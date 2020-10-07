@@ -1,0 +1,76 @@
+@media only screen and (max-width:500px){
+header{
+
+  
+    nav{
+        padding: 1em;
+        ul{
+            display: none;
+            align-items: center;
+            position: absolute;
+            flex-direction: column;
+            left: 50%;
+            top: 75px;
+            transform: translate(-50%,0);
+            background: $secondary-white;
+            z-index: 2;
+            width: 90%;
+            border-radius: 10px;
+
+            li{
+                padding: 1em 0;
+            }
+
+            li:first-child{
+                padding-top:2em ;
+            }
+
+            li:last-child{
+                padding-bottom: 2em;
+            }
+            
+        }
+
+        .nav-btn{
+            display: none;
+        }
+
+        #harmburger{
+            display: block;
+        }
+    }
+
+    .content{
+        grid-template-columns:repeat(1,100vw);
+        grid-template-rows: repeat(1,40%);
+        grid-auto-rows: 60%;
+        height: 80vh;
+    
+        
+         .content-img{
+             text-align: center;
+             grid-area: 1/1/2/2;
+             background-image: url(/images/bg-intro-mobile.svg);
+              img{
+                  width: 50%;
+                  height: auto;
+                  margin-top: 1em;
+              }        
+            }
+        .content-text{
+            padding: 1em;
+            text-align: center;
+            margin: 0;
+
+            h1{
+                padding: 0.6em;
+            }
+
+            p{
+                line-height: 1.3em;
+            }
+            
+        }
+    }
+}
+}
