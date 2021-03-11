@@ -1,5 +1,8 @@
-const mongodb = require("mongodb");
-const MongoClient = mongodb.MongoClient;
+const { MongoClient, ObjectID } = require("mongodb");
+
+// const _id = new ObjectID();
+// console.log(_id);
+// console.log(_id.getTimestamp());
 // Connection URL
 const url = "mongodb://localhost:27017";
 
@@ -10,6 +13,37 @@ MongoClient.connect(url, { useNewUrlParser: true }, (error, client) => {
   if (error) {
     return console.log("enable to connect to the database");
   }
-  client.db(dbName);
+  const db = client.db(dbName);
   console.log("connected successful");
+  //   db.collection("user").insertOne(
+  //     {
+  //       _id,
+  //       name: "Idris",
+  //       age: 12,
+  //     },
+  //     (error, result) => {
+  //       if (error)
+  //         return console.log("enable to insert document into the database");
+
+  //       console.log(result.ops);
+  //     }
+  //   );
+
+  //   db.collection("user").insertMany(
+  //     [
+  //       {
+  //         name: "Hammed",
+  //         age: 44,
+  //       },
+  //       {
+  //         name: "Afeez",
+  //         age: 34,
+  //       },
+  //     ],
+  //     (error, client) => {
+  //       if (error)
+  //         return console.log("enable to insert document into the database");
+  //       console.log(client.ops);
+  //     }
+  //   );
 });
