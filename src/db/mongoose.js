@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  "mongodb://locahost/Task-App",
+  "mongodb://localhost/Task-App",
   {
     useNewUrlParser: true,
     useCreateIndex: true,
+    useUnifiedTopology: true,
   },
   (error, res) => {
     if (error) return console.log("enable to connected to the database");

@@ -1,11 +1,16 @@
 const express = require("express");
-const app = express();
+require("./db/mongoose");
 
+const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.get("/user", (req, res) => {
-  res.json({ msg: "hello world!!!" });
-});
+//setup bodyparser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//setup route
+app.use("/api/user", require("./routers/user"));
+
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
 });
