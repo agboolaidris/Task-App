@@ -16,6 +16,14 @@ const schema = new Schema(
   { timestamps: true }
 );
 
+//getPublicProfile
+schema.methods.toJSON = function () {
+  const user = this.toObject();
+  delete user.password;
+  delete user._id;
+  return user;
+};
+
 //generateToken
 schema.methods.generateToken = async function () {
   const token = await jwt.sign({ _id: this._id }, "adewale123456789");
