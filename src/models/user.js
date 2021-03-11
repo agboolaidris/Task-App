@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const { Schema, model } = require("mongoose");
-
+const jwt = require("jsonwebtoken");
 const schema = new Schema(
   {
     username: { type: String, required: true, trim: true },
@@ -16,13 +16,20 @@ const schema = new Schema(
   { timestamps: true }
 );
 
+//generateToken
+schema.methods.generateToken = async function () {
+  const token = await jwt.sign({ _id: this._id }, "adewale123456789");
+  return token;
+};
+
+//verified user
 schema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email });
   if (!user) throw new Error("Invalid credentials");
 
-  const isMatch = bcrypt.compare(password, user.password);
-  if (!isMatch) throw new Error("email or password doesn't exist");
+  const isMatch = await bcrypt.compare(password, user.password);
 
+  if (!isMatch) throw new Error("email or password doesn't exist");
   return user;
 };
 

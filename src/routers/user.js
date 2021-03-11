@@ -1,5 +1,5 @@
 const Router = require("express").Router();
-const User = require("../db/models/user");
+const User = require("../models/user");
 
 Router.post("/", async (req, res) => {
   const { email, username, password } = req.body;
@@ -14,11 +14,15 @@ Router.post("/", async (req, res) => {
     res.status(400).send(error.message);
   }
 });
-Router.get("/", async (req, res) => {
+
+Router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
   try {
-    res.json({ user: "yyy" });
+    const user = await User.findByCredentials(email, password);
+    const token = await user.generateToken();
+    res.send({ user, token });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send(error.message);
   }
 });
 
