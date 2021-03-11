@@ -4,7 +4,6 @@ mongoose.connect(
   "mongodb://localhost/Task-App",
   {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
   },
   (error, res) => {
