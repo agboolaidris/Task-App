@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/agboolaidris/Task-App#readme",
   "dependencies": {
-    "mongodb": "^3.6.4"
+    "mongoose": "^5.11.19"
   }
 }
