@@ -1,4 +1,5 @@
 const Task = require("../models/task");
+
 exports.getTasks = async (req, res) => {
   try {
     res.json({ msg: "get task" });

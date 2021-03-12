@@ -3,6 +3,6 @@ const Auth = require("../middleware/auth");
 const { getTasks, createTask } = require("../controllers/task");
 
 Router.get("/", [Auth], getTasks);
-Router.post("/", createTask);
+Router.post("/", [Auth], createTask);
 
 module.exports = Router;

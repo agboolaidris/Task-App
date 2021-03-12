@@ -1,5 +1,5 @@
 const User = require("../models/user");
-
+const { generateToken } = require("../Utilis/token");
 exports.Register = async (req, res) => {
   try {
     const { email, username, password } = req.body;
@@ -15,9 +15,8 @@ exports.Login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findByCredentials(email, password);
-    res
-      .cookie("access-token", user.generateToken, { httpOnly: true })
-      .send(user);
+    const token = await generateToken(user._id);
+    res.cookie("access-token", token, { httpOnly: true }).send(user);
   } catch (error) {
     res.status(401).json({ msg: error });
   }
