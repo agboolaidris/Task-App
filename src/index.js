@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 //setup route
 app.use("/api/user", require("./routers/user"));
-
+app.use("/api/task", require("./routers/task"));
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
 });

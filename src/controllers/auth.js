@@ -15,9 +15,11 @@ exports.Login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findByCredentials(email, password);
-    const token = await user.generateToken();
-    res.send({ user, token });
+
+    res
+      .cookie("access-token", user.generateToken, { httpOnly: true })
+      .send(user);
   } catch (error) {
-    res.status(400).json({ msg: error.mesage });
+    res.status(401).json({ msg: error });
   }
 };
