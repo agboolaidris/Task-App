@@ -15,7 +15,6 @@ exports.Login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findByCredentials(email, password);
-
     res
       .cookie("access-token", user.generateToken, { httpOnly: true })
       .send(user);

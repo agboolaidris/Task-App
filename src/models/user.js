@@ -26,7 +26,7 @@ schema.methods.toJSON = function () {
 
 //generateToken
 schema.methods.generateToken = async function () {
-  const token = await jwt.sign({ _id: this._id }, "adewale123456789");
+  const token = await jwt.sign({ _id: this._id }, process.env.JWT_SECRET);
   return token;
 };
 

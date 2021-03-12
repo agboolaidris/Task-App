@@ -1,7 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 require("./db/mongoose");
-
+require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -15,6 +15,7 @@ app.use(cookieParser());
 //setup route
 app.use("/api/user", require("./routers/user"));
 app.use("/api/task", require("./routers/task"));
+
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
 });
